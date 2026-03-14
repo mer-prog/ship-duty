@@ -16,6 +16,7 @@ import {
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
+import { useTranslation } from "../i18n/context";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
@@ -49,19 +50,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   return json({ settings });
 };
 
-const COUNTRIES = [
-  { label: "Japan (JP)", value: "JP" },
-  { label: "United States (US)", value: "US" },
-  { label: "United Kingdom (GB)", value: "GB" },
-  { label: "Germany (DE)", value: "DE" },
-  { label: "France (FR)", value: "FR" },
-  { label: "Australia (AU)", value: "AU" },
-  { label: "Canada (CA)", value: "CA" },
-  { label: "South Korea (KR)", value: "KR" },
-  { label: "China (CN)", value: "CN" },
-  { label: "Singapore (SG)", value: "SG" },
-  { label: "Taiwan (TW)", value: "TW" },
-];
+const COUNTRY_CODES = ["JP", "US", "GB", "DE", "FR", "AU", "CA", "KR", "CN", "SG", "TW"];
 
 const CURRENCIES = [
   { label: "JPY", value: "JPY" },
@@ -79,12 +68,18 @@ const CURRENCIES = [
 export default function SettingsPage() {
   const { settings } = useLoaderData<typeof loader>();
   const submit = useSubmit();
+  const { t } = useTranslation();
 
   const [isActive, setIsActive] = useState(settings.isActive);
   const [originCountry, setOriginCountry] = useState(settings.originCountry);
   const [defaultCurrency, setDefaultCurrency] = useState(
     settings.defaultCurrency,
   );
+
+  const countryOptions = COUNTRY_CODES.map((code) => ({
+    label: t(`countries.${code}`),
+    value: code,
+  }));
 
   const handleSave = () => {
     const formData = new FormData();
@@ -100,7 +95,7 @@ export default function SettingsPage() {
 
   return (
     <Page>
-      <TitleBar title="ShipDuty Settings" />
+      <TitleBar title={t("settings.title")} />
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
@@ -108,14 +103,16 @@ export default function SettingsPage() {
               <BlockStack gap="400">
                 <InlineStack align="space-between" blockAlign="center">
                   <Text as="h2" variant="headingMd">
-                    Widget Status
+                    {t("settings.widgetStatus")}
                   </Text>
                   <Badge tone={isActive ? "success" : "critical"}>
-                    {isActive ? "Active" : "Inactive"}
+                    {isActive ? t("settings.active") : t("settings.inactive")}
                   </Badge>
                 </InlineStack>
                 <Button onClick={toggleActive}>
-                  {isActive ? "Disable Widget" : "Enable Widget"}
+                  {isActive
+                    ? t("settings.disableWidget")
+                    : t("settings.enableWidget")}
                 </Button>
               </BlockStack>
             </Card>
@@ -125,16 +122,16 @@ export default function SettingsPage() {
             <Card>
               <BlockStack gap="400">
                 <Text as="h2" variant="headingMd">
-                  Basic Settings
+                  {t("settings.basicSettings")}
                 </Text>
                 <Select
-                  label="Origin Country (shipping from)"
-                  options={COUNTRIES}
+                  label={t("settings.originCountry")}
+                  options={countryOptions}
                   value={originCountry}
                   onChange={setOriginCountry}
                 />
                 <Select
-                  label="Default Currency"
+                  label={t("settings.defaultCurrency")}
                   options={CURRENCIES}
                   value={defaultCurrency}
                   onChange={setDefaultCurrency}
@@ -146,7 +143,7 @@ export default function SettingsPage() {
           <Layout.Section>
             <InlineStack align="end">
               <Button variant="primary" onClick={handleSave}>
-                Save Settings
+                {t("settings.saveSettings")}
               </Button>
             </InlineStack>
           </Layout.Section>

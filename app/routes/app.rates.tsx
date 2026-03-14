@@ -20,6 +20,7 @@ import {
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
+import { useTranslation } from "../i18n/context";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
@@ -106,6 +107,7 @@ const COUNTRY_OPTIONS = [
 export default function RatesPage() {
   const { dutyRates, shippingRates } = useLoaderData<typeof loader>();
   const submit = useSubmit();
+  const { t } = useTranslation();
 
   // Duty Rate modal state
   const [dutyModalOpen, setDutyModalOpen] = useState(false);
@@ -190,7 +192,7 @@ export default function RatesPage() {
             tone="critical"
             onClick={() => handleDeleteDutyRate(id)}
           >
-            Delete
+            {t("rates.delete")}
           </Button>
         </IndexTable.Cell>
       </IndexTable.Row>
@@ -230,7 +232,7 @@ export default function RatesPage() {
             tone="critical"
             onClick={() => handleDeleteShippingRate(id)}
           >
-            Delete
+            {t("rates.delete")}
           </Button>
         </IndexTable.Cell>
       </IndexTable.Row>
@@ -239,7 +241,7 @@ export default function RatesPage() {
 
   return (
     <Page>
-      <TitleBar title="Rates Management" />
+      <TitleBar title={t("rates.title")} />
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
@@ -247,27 +249,24 @@ export default function RatesPage() {
               <BlockStack gap="400">
                 <InlineStack align="space-between" blockAlign="center">
                   <Text as="h2" variant="headingMd">
-                    Duty Rates
+                    {t("rates.dutyRates")}
                   </Text>
                   <Button onClick={() => setDutyModalOpen(true)}>
-                    Add Duty Rate
+                    {t("rates.addDutyRate")}
                   </Button>
                 </InlineStack>
                 {dutyRates.length === 0 ? (
                   <Banner tone="info">
-                    <p>
-                      No duty rates configured. Run seed data or add rates
-                      manually.
-                    </p>
+                    <p>{t("rates.noDutyRates")}</p>
                   </Banner>
                 ) : (
                   <IndexTable
                     itemCount={dutyRates.length}
                     headings={[
-                      { title: "Country" },
-                      { title: "Category" },
-                      { title: "Rate" },
-                      { title: "Actions" },
+                      { title: t("rates.country") },
+                      { title: t("rates.category") },
+                      { title: t("rates.rate") },
+                      { title: t("rates.actions") },
                     ]}
                     selectable={false}
                   >
@@ -283,27 +282,24 @@ export default function RatesPage() {
               <BlockStack gap="400">
                 <InlineStack align="space-between" blockAlign="center">
                   <Text as="h2" variant="headingMd">
-                    Shipping Rates
+                    {t("rates.shippingRates")}
                   </Text>
                   <Button onClick={() => setShippingModalOpen(true)}>
-                    Add Shipping Rate
+                    {t("rates.addShippingRate")}
                   </Button>
                 </InlineStack>
                 {shippingRates.length === 0 ? (
                   <Banner tone="info">
-                    <p>
-                      No shipping rates configured. Run seed data or add rates
-                      manually.
-                    </p>
+                    <p>{t("rates.noShippingRates")}</p>
                   </Banner>
                 ) : (
                   <IndexTable
                     itemCount={shippingRates.length}
                     headings={[
-                      { title: "Country" },
-                      { title: "Weight Band" },
-                      { title: "Rate" },
-                      { title: "Actions" },
+                      { title: t("rates.country") },
+                      { title: t("rates.weightBand") },
+                      { title: t("rates.rate") },
+                      { title: t("rates.actions") },
                     ]}
                     selectable={false}
                   >
@@ -319,28 +315,28 @@ export default function RatesPage() {
       <Modal
         open={dutyModalOpen}
         onClose={() => setDutyModalOpen(false)}
-        title="Add Duty Rate"
-        primaryAction={{ content: "Save", onAction: handleAddDutyRate }}
+        title={t("rates.addDutyRate")}
+        primaryAction={{ content: t("rates.save"), onAction: handleAddDutyRate }}
         secondaryActions={[
-          { content: "Cancel", onAction: () => setDutyModalOpen(false) },
+          { content: t("rates.cancel"), onAction: () => setDutyModalOpen(false) },
         ]}
       >
         <Modal.Section>
           <FormLayout>
             <Select
-              label="Country"
+              label={t("rates.country")}
               options={COUNTRY_OPTIONS}
               value={dutyCountry}
               onChange={setDutyCountry}
             />
             <TextField
-              label="Category"
+              label={t("rates.category")}
               value={dutyCategory}
               onChange={setDutyCategory}
               autoComplete="off"
             />
             <TextField
-              label="Rate (decimal, e.g. 0.05 = 5%)"
+              label={t("rates.dutyRateLabel")}
               type="number"
               value={dutyRateValue}
               onChange={setDutyRateValue}
@@ -353,43 +349,49 @@ export default function RatesPage() {
       <Modal
         open={shippingModalOpen}
         onClose={() => setShippingModalOpen(false)}
-        title="Add Shipping Rate"
-        primaryAction={{ content: "Save", onAction: handleAddShippingRate }}
+        title={t("rates.addShippingRate")}
+        primaryAction={{
+          content: t("rates.save"),
+          onAction: handleAddShippingRate,
+        }}
         secondaryActions={[
-          { content: "Cancel", onAction: () => setShippingModalOpen(false) },
+          {
+            content: t("rates.cancel"),
+            onAction: () => setShippingModalOpen(false),
+          },
         ]}
       >
         <Modal.Section>
           <FormLayout>
             <Select
-              label="Country"
+              label={t("rates.country")}
               options={COUNTRY_OPTIONS}
               value={shippingCountry}
               onChange={setShippingCountry}
             />
             <TextField
-              label="Min Weight (g)"
+              label={t("rates.minWeight")}
               type="number"
               value={shippingMinWeight}
               onChange={setShippingMinWeight}
               autoComplete="off"
             />
             <TextField
-              label="Max Weight (g)"
+              label={t("rates.maxWeight")}
               type="number"
               value={shippingMaxWeight}
               onChange={setShippingMaxWeight}
               autoComplete="off"
             />
             <TextField
-              label="Rate"
+              label={t("rates.rate")}
               type="number"
               value={shippingRateValue}
               onChange={setShippingRateValue}
               autoComplete="off"
             />
             <TextField
-              label="Currency"
+              label={t("rates.currency")}
               value={shippingCurrency}
               onChange={setShippingCurrency}
               autoComplete="off"

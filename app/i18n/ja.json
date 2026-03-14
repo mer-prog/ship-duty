@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "settings": "設定",
+    "rates": "料金テーブル"
+  },
+  "settings": {
+    "title": "ShipDuty 設定",
+    "widgetStatus": "ウィジェットステータス",
+    "active": "有効",
+    "inactive": "無効",
+    "enableWidget": "ウィジェットを有効にする",
+    "disableWidget": "ウィジェットを無効にする",
+    "basicSettings": "基本設定",
+    "originCountry": "発送元の国",
+    "defaultCurrency": "デフォルト通貨",
+    "saveSettings": "設定を保存"
+  },
+  "rates": {
+    "title": "料金テーブル管理",
+    "dutyRates": "関税率",
+    "addDutyRate": "関税率を追加",
+    "noDutyRates": "関税率が設定されていません。シードデータを実行するか、手動で追加してください。",
+    "shippingRates": "送料",
+    "addShippingRate": "送料を追加",
+    "noShippingRates": "送料が設定されていません。シードデータを実行するか、手動で追加してください。",
+    "country": "国",
+    "category": "カテゴリ",
+    "rate": "料金",
+    "actions": "操作",
+    "weightBand": "重量帯",
+    "delete": "削除",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "dutyRateLabel": "税率（小数、例: 0.05 = 5%）",
+    "minWeight": "最小重量 (g)",
+    "maxWeight": "最大重量 (g)",
+    "currency": "通貨"
+  },
+  "login": {
+    "title": "ログイン",
+    "shopDomain": "ショップドメイン",
+    "shopDomainHint": "example.myshopify.com",
+    "submit": "ログイン",
+    "errorMissing": "ログインするにはショップドメインを入力してください",
+    "errorInvalid": "有効なショップドメインを入力してください"
+  },
+  "index": {
+    "heading": "[あなたのアプリ] について",
+    "tagline": "[あなたのアプリ] の価値を説明するキャッチコピー。",
+    "shopDomain": "ショップドメイン",
+    "shopDomainHint": "例: my-shop-domain.myshopify.com",
+    "logIn": "ログイン",
+    "feature": "製品の特徴",
+    "featureDetail": "お客様にとっての機能とそのメリットについての詳細。"
+  },
+  "countries": {
+    "JP": "日本 (JP)",
+    "US": "アメリカ (US)",
+    "GB": "イギリス (GB)",
+    "DE": "ドイツ (DE)",
+    "FR": "フランス (FR)",
+    "AU": "オーストラリア (AU)",
+    "CA": "カナダ (CA)",
+    "KR": "韓国 (KR)",
+    "CN": "中国 (CN)",
+    "SG": "シンガポール (SG)",
+    "TW": "台湾 (TW)"
+  },
+  "language": {
+    "label": "言語",
+    "en": "EN",
+    "ja": "JA"
+  }
+}

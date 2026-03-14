@@ -3,9 +3,13 @@ import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
 import { boundary } from "@shopify/shopify-app-remix/server";
 import { AppProvider } from "@shopify/shopify-app-remix/react";
 import { NavMenu } from "@shopify/app-bridge-react";
+import { BlockStack, InlineStack, Box } from "@shopify/polaris";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 
 import { authenticate } from "../shopify.server";
+import { I18nProvider } from "../i18n/context";
+import { LanguageToggle } from "../components/LanguageToggle";
+import { AppNavMenu } from "../components/AppNavMenu";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
@@ -20,13 +24,15 @@ export default function App() {
 
   return (
     <AppProvider isEmbeddedApp apiKey={apiKey}>
-      <NavMenu>
-        <Link to="/app" rel="home">
-          Settings
-        </Link>
-        <Link to="/app/rates">Rates</Link>
-      </NavMenu>
-      <Outlet />
+      <I18nProvider defaultLocale="ja">
+        <AppNavMenu />
+        <Box paddingInlineEnd="400" paddingBlockStart="200">
+          <InlineStack align="end">
+            <LanguageToggle />
+          </InlineStack>
+        </Box>
+        <Outlet />
+      </I18nProvider>
     </AppProvider>
   );
 }

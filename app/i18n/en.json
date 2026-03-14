@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "settings": "Settings",
+    "rates": "Rates"
+  },
+  "settings": {
+    "title": "ShipDuty Settings",
+    "widgetStatus": "Widget Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "enableWidget": "Enable Widget",
+    "disableWidget": "Disable Widget",
+    "basicSettings": "Basic Settings",
+    "originCountry": "Origin Country (shipping from)",
+    "defaultCurrency": "Default Currency",
+    "saveSettings": "Save Settings"
+  },
+  "rates": {
+    "title": "Rates Management",
+    "dutyRates": "Duty Rates",
+    "addDutyRate": "Add Duty Rate",
+    "noDutyRates": "No duty rates configured. Run seed data or add rates manually.",
+    "shippingRates": "Shipping Rates",
+    "addShippingRate": "Add Shipping Rate",
+    "noShippingRates": "No shipping rates configured. Run seed data or add rates manually.",
+    "country": "Country",
+    "category": "Category",
+    "rate": "Rate",
+    "actions": "Actions",
+    "weightBand": "Weight Band",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "dutyRateLabel": "Rate (decimal, e.g. 0.05 = 5%)",
+    "minWeight": "Min Weight (g)",
+    "maxWeight": "Max Weight (g)",
+    "currency": "Currency"
+  },
+  "login": {
+    "title": "Log in",
+    "shopDomain": "Shop domain",
+    "shopDomainHint": "example.myshopify.com",
+    "submit": "Log in",
+    "errorMissing": "Please enter your shop domain to log in",
+    "errorInvalid": "Please enter a valid shop domain to log in"
+  },
+  "index": {
+    "heading": "A short heading about [your app]",
+    "tagline": "A tagline about [your app] that describes your value proposition.",
+    "shopDomain": "Shop domain",
+    "shopDomainHint": "e.g: my-shop-domain.myshopify.com",
+    "logIn": "Log in",
+    "feature": "Product feature",
+    "featureDetail": "Some detail about your feature and its benefit to your customer."
+  },
+  "countries": {
+    "JP": "Japan (JP)",
+    "US": "United States (US)",
+    "GB": "United Kingdom (GB)",
+    "DE": "Germany (DE)",
+    "FR": "France (FR)",
+    "AU": "Australia (AU)",
+    "CA": "Canada (CA)",
+    "KR": "South Korea (KR)",
+    "CN": "China (CN)",
+    "SG": "Singapore (SG)",
+    "TW": "Taiwan (TW)"
+  },
+  "language": {
+    "label": "Language",
+    "en": "EN",
+    "ja": "JA"
+  }
+}
