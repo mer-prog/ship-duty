@@ -1,0 +1,88 @@
+{{ 'duty-calculator.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="ship-duty-calculator"
+  class="ship-duty"
+  data-shop="{{ shop.permanent_domain }}"
+  data-product-price="{{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }}"
+  data-app-url="{{ app.proxy_url }}"
+>
+  <h3 class="ship-duty__title">{{ block.settings.title }}</h3>
+
+  <div class="ship-duty__form">
+    <label class="ship-duty__label" for="ship-duty-country">
+      Shipping Destination
+    </label>
+    <select id="ship-duty-country" class="ship-duty__select">
+      <option value="">Select a country</option>
+      <option value="US">United States</option>
+      <option value="GB">United Kingdom</option>
+      <option value="DE">Germany</option>
+      <option value="FR">France</option>
+      <option value="AU">Australia</option>
+      <option value="CA">Canada</option>
+      <option value="KR">South Korea</option>
+      <option value="CN">China</option>
+      <option value="SG">Singapore</option>
+      <option value="TW">Taiwan</option>
+    </select>
+
+    <button id="ship-duty-calculate" class="ship-duty__button" type="button">
+      {{ block.settings.button_text }}
+    </button>
+  </div>
+
+  <div id="ship-duty-result" class="ship-duty__result" style="display: none;">
+    <div class="ship-duty__row">
+      <span>Product Price</span>
+      <span id="ship-duty-price">-</span>
+    </div>
+    <div class="ship-duty__row">
+      <span>Estimated Duty</span>
+      <span id="ship-duty-duty">-</span>
+    </div>
+    <div class="ship-duty__row">
+      <span>Estimated Shipping</span>
+      <span id="ship-duty-shipping">-</span>
+    </div>
+    <div class="ship-duty__row ship-duty__row--total">
+      <span>Estimated Total</span>
+      <span id="ship-duty-total">-</span>
+    </div>
+  </div>
+
+  <div id="ship-duty-error" class="ship-duty__error" style="display: none;"></div>
+
+  <p class="ship-duty__disclaimer">
+    {{ block.settings.disclaimer_text }}
+  </p>
+</div>
+
+<script src="{{ 'duty-calculator.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Duty Calculator",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Widget Title",
+      "default": "Estimated Duties & Shipping"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Calculate Button Text",
+      "default": "Calculate"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer_text",
+      "label": "Disclaimer Text",
+      "default": "This is an estimate only. Actual duties and taxes may vary based on customs assessment at the time of import."
+    }
+  ]
+}
+{% endschema %}

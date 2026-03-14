@@ -1,0 +1,40 @@
+api_version = "2024-10"
+type = "theme"
+
+[[extensions]]
+name = "ShipDuty Calculator"
+handle = "ship-duty-widget"
+
+  [[extensions.blocks]]
+  name = "Duty Calculator"
+  template = "blocks/duty-calculator.liquid"
+  target = "section"
+
+    [extensions.blocks.default]
+    title = "Estimated Duties & Shipping"
+
+  [extensions.settings]
+
+    [[extensions.settings.fields]]
+    key = "title"
+    type = "text"
+    label = "Widget Title"
+
+      [extensions.settings.fields.default]
+      value = "Estimated Duties & Shipping"
+
+    [[extensions.settings.fields]]
+    key = "button_text"
+    type = "text"
+    label = "Calculate Button Text"
+
+      [extensions.settings.fields.default]
+      value = "Calculate"
+
+    [[extensions.settings.fields]]
+    key = "disclaimer_text"
+    type = "textarea"
+    label = "Disclaimer Text"
+
+      [extensions.settings.fields.default]
+      value = "This is an estimate only. Actual duties and taxes may vary based on customs assessment at the time of import."
