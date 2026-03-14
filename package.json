@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "ship-duty",
   "private": true,
   "scripts": {
     "build": "remix vite:build",
@@ -52,6 +52,9 @@
     "prettier": "^3.2.4",
     "typescript": "^5.2.2",
     "vite": "^6.2.2"
+  },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
   },
   "workspaces": {
     "packages": [

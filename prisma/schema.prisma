@@ -32,3 +32,33 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+model DutyRate {
+  id          String @id @default(cuid())
+  shop        String
+  countryCode String
+  category    String @default("general")
+  rate        Float  // 0.05 = 5%
+
+  @@unique([shop, countryCode, category])
+}
+
+model ShippingRate {
+  id          String @id @default(cuid())
+  shop        String
+  countryCode String
+  minWeight   Int
+  maxWeight   Int
+  rate        Float
+  currency    String @default("USD")
+
+  @@unique([shop, countryCode, minWeight, maxWeight])
+}
+
+model WidgetSettings {
+  id              String  @id @default(cuid())
+  shop            String  @unique
+  isActive        Boolean @default(true)
+  originCountry   String  @default("JP")
+  defaultCurrency String  @default("JPY")
+}
