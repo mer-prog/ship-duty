@@ -1,4 +1,5 @@
 [[extensions]]
+uid = "5434cb53-1f1f-9927-859d-e9607a6f3a3b5a819dde"
 type = "theme_app_extension"
 name = "ShipDuty Calculator"
 handle = "ship-duty-widget"
