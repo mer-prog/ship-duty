@@ -1,7 +1,5 @@
-api_version = "2024-10"
-type = "theme_app_extension"
-
 [[extensions]]
+type = "theme_app_extension"
 name = "ShipDuty Calculator"
 handle = "ship-duty-widget"
 
