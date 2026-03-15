@@ -1,5 +1,5 @@
 api_version = "2024-10"
-type = "theme"
+type = "theme_app_extension"
 
 [[extensions]]
 name = "ShipDuty Calculator"
