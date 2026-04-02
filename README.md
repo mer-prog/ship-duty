@@ -2,8 +2,6 @@
 
 **Estimate duties and shipping costs by country, right on the product page.**
 
-![ShipDuty Calculator Screenshot](docs/screenshots/ship-duty-preview.png)
-
 ## Features
 
 - **Product Page Widget** — Theme App Extension that embeds a duty & shipping calculator on any product page
